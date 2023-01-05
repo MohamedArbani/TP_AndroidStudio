@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Three Activities</string>
     <string name="todo">TODO</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>

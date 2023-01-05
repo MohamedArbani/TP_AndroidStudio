@@ -136,4 +136,9 @@ public class MainActivity extends AppCompatActivity {
         Intent myIntent = new Intent(this, PersoActivity.class);
         startActivity(myIntent);
     }
+
+    public void toContactPage(View view) {
+        Intent myIntent = new Intent(this, ContactActivity.class);
+        startActivity(myIntent);
+    }
 }
