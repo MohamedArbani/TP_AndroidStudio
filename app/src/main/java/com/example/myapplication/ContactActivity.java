@@ -74,10 +74,6 @@ public class ContactActivity extends AppCompatActivity {
                 //Enable Details Contact Button
                 dc.setEnabled(true);
 
-                Button call = findViewById(R.id.buttonCall);
-                //Enable Details Contact Button
-                call.setEnabled(true);
-
                 // Affichez le contact uri dans une Toast
                 Toast.makeText(this, "Contact uri : "+contactUri+" got successfully" , Toast.LENGTH_LONG).show();
             }else {
@@ -127,6 +123,9 @@ public class ContactActivity extends AppCompatActivity {
 //        int column = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone._ID);
 //        String number = cursor.getString(column);
 
+        Button call = findViewById(R.id.buttonCall);
+        //Enable Details Contact Button
+        call.setEnabled(true);
 
         cursorPhone.close();
         cursor.close();
