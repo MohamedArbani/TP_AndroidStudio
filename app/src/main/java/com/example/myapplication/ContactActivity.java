@@ -98,39 +98,38 @@ public class ContactActivity extends AppCompatActivity {
 
     @SuppressLint("Range")
     public void afficherDetailsContact(View view){
-        String[] projection = {ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
-                ContactsContract.CommonDataKinds.Phone.NUMBER};
-        Cursor cursor = getContentResolver().query(contactUri, projection, null,null, null);
+        String contactName;
+        String contactId;
 
-        //cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+        Cursor cursor = getContentResolver().query(Uri.parse(contactUri.toString()), null, null, null, null);
+        if (cursor.moveToNext()){
+            do {
+                contactName = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                contactId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
+            }while(cursor.moveToNext());
+            Cursor cursorPhone = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                    new String[]{ContactsContract.CommonDataKinds.Phone.NUMBER},
+                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "=?"+" and " +
+                            ContactsContract.CommonDataKinds.Phone.TYPE + "=" +
+                            ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
+                    new String[]{contactId},
+                    null);
 
-       String contactID = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
+            if (cursorPhone.moveToNext()) {
+                this.number = cursorPhone.getString(0);
+            }
 
-        Cursor cursorPhone = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                new String[]{ContactsContract.CommonDataKinds.Phone.NUMBER},
-                ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ? AND " +
-                        ContactsContract.CommonDataKinds.Phone.TYPE + " = " +
-                        ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
-                new String[]{contactID},null);
+            Button call = findViewById(R.id.buttonCall);
+            //Enable Details Contact Button
+            call.setEnabled(true);
 
-        this.number = cursorPhone.getString(cursorPhone.getColumnIndex(ContactsContract.CommonDataKinds.Phone._ID));
+            cursorPhone.close();
+            cursor.close();
+            Toast.makeText(this, "Phone number de Id: "+ contactId +" est : "+this.number + " et son nom est : "+ contactName, Toast.LENGTH_LONG).show();
 
-//        String[] projection = {ContactsContract.CommonDataKinds.Phone.NUMBER};
-//        Cursor cursor = getContentResolver().query(contactUri, null, null, null, null);
-//        cursor.moveToFirst();
-//
-//        cursor.moveToFirst();
-//        int column = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone._ID);
-//        String number = cursor.getString(column);
+        }
 
-        Button call = findViewById(R.id.buttonCall);
-        //Enable Details Contact Button
-        call.setEnabled(true);
-
-        cursorPhone.close();
-        cursor.close();
-        Toast.makeText(this, "Phone number est : "+this.number, Toast.LENGTH_LONG).show();
-    }
+        }
 
     @Override
     public void finish() {
