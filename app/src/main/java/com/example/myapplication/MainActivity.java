@@ -58,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void callNumber(View view){
-        Intent myIntent = new Intent(getApplicationContext(), LoginActivity.class);
+        //Intent myIntent = new Intent(getApplicationContext(), LoginActivity.class);
+        Intent myIntent = new Intent("login.ACTION");
         startActivityForResult(myIntent,78);
     }
 

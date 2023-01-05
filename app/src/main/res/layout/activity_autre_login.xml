@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".AutreLoginActivity">
 
     <EditText
         android:id="@+id/edtTxtName"
@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:backgroundTint="#3F51B5"
+        android:backgroundTint="#E91E63"
         android:onClick="login"
         android:text="@android:string/ok"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +64,7 @@
         android:layout_marginStart="29dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="100dp"
-        android:backgroundTint="#523F51B5"
+        android:backgroundTint="#34E91E63"
         android:onClick="finish"
         android:text="@android:string/cancel"
         app:layout_constraintEnd_toEndOf="parent"
@@ -98,10 +98,11 @@
         android:layout_marginStart="101dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="218dp"
-        android:text="Login principal"
+        android:text="Autre Login"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
